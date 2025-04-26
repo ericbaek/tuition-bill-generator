@@ -1,11 +1,11 @@
 import type { Route } from './+types/student';
 import GeneratePage from '~/components/layout/generatePage';
 import useStore from 'app/database/students';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { AddReceipt } from '~/add/addReceipt';
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: 'Student Details' }];
+  return [{ title: 'Manage Receipts' }];
 }
 
 export default function StudentPage() {
@@ -32,13 +32,14 @@ export default function StudentPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {receipts.length > 0 ? (
           receipts.map((receipt) => (
-            <div
-              key={receipt.id}
-              className="p-4 border rounded-lg shadow-sm bg-white"
-            >
-              <h3 className="text-lg font-semibold">{receipt.name}</h3>
-              <p className="text-sm text-gray-500">Receipt ID: {receipt.id}</p>
-            </div>
+            <Link to={`/student/${id}/receipt/${receipt.id}`} key={receipt.id}>
+              <div className="p-4 border rounded-lg shadow-sm bg-white">
+                <h3 className="text-lg font-semibold">{receipt.name}</h3>
+                <p className="text-sm text-gray-500">
+                  Receipt ID: {receipt.id}
+                </p>
+              </div>
+            </Link>
           ))
         ) : (
           <p className="text-gray-500">
