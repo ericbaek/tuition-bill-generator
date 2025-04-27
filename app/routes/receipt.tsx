@@ -3,6 +3,7 @@ import GeneratePage from '~/components/layout/generatePage';
 import useStore from 'app/database/students';
 import { useParams } from 'react-router';
 import { AddReceipt } from '~/add/addReceipt';
+import { DatePickerForm } from '~/form/receiptForm';
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: 'Manage Receipts' }];
@@ -41,7 +42,7 @@ export default function RecieptPage() {
       subTitle={`${student.name}`}
       titleRight={<AddReceipt studentId={student.id} />}
     >
-      <pre>{JSON.stringify(receipt, null, 2)}</pre>
+      <DatePickerForm />
     </GeneratePage>
   );
 }
